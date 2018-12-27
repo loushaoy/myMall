@@ -1,6 +1,7 @@
 package com.loushy.mymall.controller;
 
 import com.loushy.mymall.action.Md5;
+import com.loushy.mymall.dao.RedisDao;
 import com.loushy.mymall.entity.User;
 import com.loushy.mymall.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,9 @@ import javax.annotation.Resource;
 public class UserController {
     @Resource
     public UserService userServiceImpl;
+
+    @Resource
+    public RedisDao redisDao;
 
     @RequestMapping("/do")
     public void listUser(){

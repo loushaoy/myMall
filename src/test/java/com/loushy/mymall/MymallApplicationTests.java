@@ -16,6 +16,8 @@ import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,9 +30,10 @@ public class MymallApplicationTests {
     public void contextLoads() {
     }
 
+    @Resource
+    UserService userService;
     @Test
     public void insertUser(){
-        UserService userService = new UserServiceImpl();
         User user =  new User();
         user.setUsername("loushaoYong");
         user.setPassword(Md5.setMd5("123456"));
@@ -45,6 +48,15 @@ public class MymallApplicationTests {
     public void redisTest(){
         redisDao.setKey("aac","123");
         System.out.println(redisDao.getValue("aac"));
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        redisDao.setKey("list",list);
+        System.out.println(redisDao.getListValue("list"));
+        redisDao.deleteValue("list");
+        System.out.println(redisDao.getListValue("list"));
     }
 
 
